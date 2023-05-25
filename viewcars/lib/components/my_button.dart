@@ -3,18 +3,25 @@ import 'package:lottie/lottie.dart';
 
 class MyButton extends StatelessWidget {
   MyButton(
-      {super.key, required this.imageCar, required this.carType, this.ontap});
+      {super.key,
+      required this.imageCar,
+      required this.carType,
+      required this.pageName});
   String imageCar;
   late double width;
   late double height;
   String carType;
-  VoidCallback? ontap;
+  Widget pageName;
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
     return GestureDetector(
-      onTap: ontap,
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext) {
+          return pageName;
+        }));
+      },
       child: Container(
         child: Column(
           children: [

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:lottie/lottie.dart';
 import 'package:viewcars/components/my_button.dart';
+import 'package:viewcars/screens/cars_Nissan.dart';
+import 'package:viewcars/screens/cars_Toyota.dart';
+import 'package:viewcars/screens/cars_bmw.dart';
+import 'package:viewcars/screens/cars_mercedes.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -12,10 +16,23 @@ class HomePage extends StatelessWidget {
     MyButton(
       imageCar: "Assets/icons/bmw.png",
       carType: "BMW",
+      pageName: HomePageBMW(),
     ),
-    MyButton(imageCar: "Assets/icons/toyota.png", carType: "Toyota"),
-    MyButton(imageCar: "Assets/icons/nissan.png", carType: "Nissan"),
-    MyButton(imageCar: "Assets/icons/mercedes.png", carType: "Mercedes")
+    MyButton(
+      imageCar: "Assets/icons/toyota.png",
+      carType: "Toyota",
+      pageName: HomePageToyota(),
+    ),
+    MyButton(
+      imageCar: "Assets/icons/nissan.png",
+      carType: "Nissan",
+      pageName: HomePageNissan(),
+    ),
+    MyButton(
+      imageCar: "Assets/icons/mercedes.png",
+      carType: "Mercedes",
+      pageName: HomePageMercedes(),
+    )
   ];
   @override
   Widget build(BuildContext context) {
@@ -30,44 +47,44 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Container(
-          color: Color(0xff1a759f),
-          width: width,
-          height: height,
-          child: Column(
-            children: [
-              SizedBox(
-                height: height * 0.03,
-              ),
-              Lottie.asset("Assets/animated_icons/98072-travel-car-city.json",
-                  width: width * 0.7),
-              SizedBox(
-                height: height * 0.1,
-              ),
-              Container(
-                width: width,
-                height: height * 0.48,
-                child: AnimationLimiter(
-                  child: GridView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2),
-                    itemCount: carsButtons.length,
-                    itemBuilder: (context, index) {
-                      return AnimationConfiguration.staggeredGrid(
-                        position: index,
-                        duration: const Duration(milliseconds: 375),
-                        columnCount: columnCount,
-                        child: ScaleAnimation(
-                          child: FadeInAnimation(child: carsButtons[index]),
-                        ),
-                      );
-                    },
-                  ),
+        color: Color(0xff1a759f),
+        width: width,
+        height: height,
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * 0.03,
+            ),
+            Lottie.asset("Assets/animated_icons/98072-travel-car-city.json",
+                width: width * 0.7),
+            SizedBox(
+              height: height * 0.1,
+            ),
+            Container(
+              width: width,
+              height: height * 0.48,
+              child: AnimationLimiter(
+                child: GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemCount: carsButtons.length,
+                  itemBuilder: (context, index) {
+                    return AnimationConfiguration.staggeredGrid(
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      columnCount: columnCount,
+                      child: ScaleAnimation(
+                        child: FadeInAnimation(child: carsButtons[index]),
+                      ),
+                    );
+                  },
                 ),
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
